@@ -1,0 +1,1061 @@
+:root {
+  --color-bg-primary: #000000;
+  --color-text-main: #FFFFFF;
+  --color-accent: #4a90e2;
+  --header-bg: rgba(0,0,0, 0.8);
+
+  --z-index-header: 1000;
+  --z-index-nav-overlay: 900;
+  --z-index-interactive: 1001;
+
+  --transition-default: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ページ内リンクの移動を滑らかにする */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-primary);
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--color-text-main);
+  overflow-x: hidden;
+}
+
+/* ヘッダー */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-sizing: border-box;
+  z-index: var(--z-index-header);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ヘッダーのテキストロゴ */
+.header-logo {
+color: var(--color-text-main);
+  font-size: 22px;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: var(--z-index-interactive);
+}
+
+/* ハンバーガーボタン */
+.hamburger-overlay {
+  position: relative;
+  z-index: var(--z-index-interactive);
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-right: -10px;
+  transition: opacity 0.3s ease;
+}
+
+/* フォーカス時のアクセシビリティ対応 */
+.hamburger-overlay:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.hamburger-overlay_line {
+  position: absolute;
+  left: 11px;
+  width: 26px;
+  height: 2px;
+  background-color: var(--color-text-main);/*new*/
+  transition: var(--transition-default);/*new*/
+}
+
+.hamburger-overlay_line:nth-of-type(1) { top: 16px; }
+.hamburger-overlay_line:nth-of-type(2) { top: 24px; }
+.hamburger-overlay_line:nth-of-type(3) { top: 32px; }
+
+.hamburger-overlay.active .hamburger-overlay_line:nth-of-type(1) {
+  transform: translateY(8px) rotate(-45deg);
+}
+.hamburger-overlay.active .hamburger-overlay_line:nth-of-type(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+.hamburger-overlay.active .hamburger-overlay_line:nth-of-type(3) {
+  transform: translateY(-8px) rotate(45deg);
+}
+
+/*  ハンバーガーボタンを押すと現れる全画面メニュー  */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--transition-default), visibility var(--transition-default);
+  z-index: var(--z-index-nav-overlay);
+}
+
+.nav-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav-overlay_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-overlay_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nav-overlay_item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform var(--transition-default), opacity var(--transition-default);/*new*/
+  margin-bottom: 20px;/*new*/
+}
+
+.nav-overlay.active .nav-overlay_item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*メニューを開いた時の文字の遅延*/
+.nav-overlay.active .nav-overlay_item:nth-child(1) { transition-delay: 0.1s; }
+.nav-overlay.active .nav-overlay_item:nth-child(2) { transition-delay: 0.15s; }
+.nav-overlay.active .nav-overlay_item:nth-child(3) { transition-delay: 0.2s; }
+.nav-overlay.active .nav-overlay_item:nth-child(4) { transition-delay: 0.25s; }
+.nav-overlay.active .nav-overlay_item:nth-child(5) { transition-delay: 0.3s; }
+.nav-overlay.active .nav-overlay_item:nth-child(6) { transition-delay: 0.35s; }
+
+/* メニュー内のリンク文字のデザイン */
+.nav-overlay_link {
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--color-text-main);
+  font-size: clamp(24px, 5vw, 40px);
+  text-decoration: none;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  transition: 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.nav-overlay_link:hover {
+  color: var(--color-accent);
+  letter-spacing: 0.1em; /* マウスカーソルで文字に合わせたら少し文字間が広がる演出 */
+}
+
+/* メインビジュアル */
+main {
+  width: 100%;
+  position: relative;
+}
+
+.hero-area {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--color-bg-primary);
+}
+
+.hero-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 16 / 9;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0; 
+  z-index: 10; 
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,           
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.7) 80%,       
+    var(--color-bg-primary) 100%
+  );
+  pointer-events: none;
+}
+
+
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  text-align: center;
+  z-index: 20;
+}
+
+/* タイトル */
+.hero-title {
+  margin: 0 0 20px 0;
+  font-size: clamp(48px, 12vw, 100px);
+  color: var(--color-text-main);
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.gradient-text {
+  display: block; /* 改行をCSSで制御 */
+  background:linear-gradient(
+    to bottom,
+    #ffffff 20%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+.hero-subtitle {
+  margin: 0;
+  font-size: clamp(16px, 3vw, 24px);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: heroFadeUp 1.2s ease-out forwards;
+}
+
+/* ページを開いた時にふわっと文字が浮かぶ */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* インフォメーションカード */
+.info-cards {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 90%;
+  max-width: 900px;
+  z-index: 20;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 16px 24px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  flex: 1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;/*new*/
+}
+
+
+/* アイコンの共通スタイル */
+.info-card-date_icon,
+.info-card-venue_icon {
+  font-size: 24px;
+  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;
+}
+
+/* 個別カラーの適用 */
+.info-card-date_icon {
+  color: #f87171;
+  background-color: rgba(248, 113, 113, 0.15);
+}
+
+
+.info-card-venue_icon {
+  color: #60a5fa;
+  background-color: rgba(96, 165, 250, 0.15);
+}
+
+.info-card_content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.info-card_label {
+  color: rgba(255, 255, 255, 0.5); 
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.info-card_value {
+  color: var(--color-text-main);
+  font-size: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Artistsセクション */
+.section-artists {
+  background-color: var(--color-bg-primary);
+  padding: 100px 20px;
+}
+
+/* 共通ラベルスタイル */
+.artists-label {
+  display: block;
+  width: fit-content;
+  min-width: 240px;
+  margin: 0 auto 80px;
+  padding: 12px 40px;
+  background: rgba(255, 128, 128, 0.1);
+  border: 1px solid #FF8080;
+  border-radius: 50px;
+  color: #FF8080;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.artists-container {
+  display: flex;         
+  justify-content: center; 
+  gap: 20px;              
+  flex-wrap: wrap;        
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.artist-card {
+  width: 100%;
+  max-width: 400px; 
+  margin: 0 auto ; 
+  background-color: rgba(20, 10, 30, 0.4);
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+
+
+/* 画像エリアの設定 */
+.artist-card_image { 
+  width: 100%;
+  overflow: hidden;
+  height:300px;
+}
+
+.artist-card_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* Artistsセクション */
+.artist-card_content { 
+  padding: 20px 25px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+/* 共通のアーティスト名スタイル */
+.artist-name { 
+  font-family: 'Playfair Display', serif;
+  color: #ff8da1; 
+  font-size: 28px;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* 共通の役割スタイル */
+.artist-role { 
+  color: #b0b0b0;
+  font-size: 13px;
+  margin: 0 0 15px 0; 
+  padding-left: 12px;
+  border-left: 2px solid #ff4081; 
+  line-height: 1.4;
+  font-weight: 500;
+  display: inline-block;
+  letter-spacing: 0.1em; 
+}
+
+/* 2番目のカードの名前の色を変更 */
+.artist-card:nth-child(2) .artist-name { 
+  color: #8e0bdf; 
+}
+
+/* 2番目のカードのアクセント線の色を変更 */
+.artist-card:nth-child(2) .artist-role { 
+  border-left-color: #8e0bdf;
+}
+
+.artist-desc {
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+/* Timetableセクション */
+
+.section-timetable {
+  background-color: #000; 
+  padding: 100px 20px; 
+  position: relative;
+  overflow: hidden;
+}
+
+.timetable-label {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  padding: 12px 0;
+  margin: 0 auto 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 10, 40, 0.6);
+  border: 1px solid #4D8AFF;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #4D8AFF;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 15px rgba(77, 138, 255, 0.3);
+}
+
+.event-title {
+  margin: 0;
+  font-size: 20px;
+  color: #FFFFFF;
+  font-family: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+.event-subtitle {
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  color: #9CA3AF;
+  font-family: "Shippori Mincho", "Hiragino Mincho ProN", serif; /* new: フォント指定を統一 */
+  font-weight: 400;
+}
+
+.timetable-list {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.timetable-list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(77, 138, 255, 0) 0%,
+    #4D8AFF 10%,
+    #4D8AFF 90%,
+    rgba(77, 138, 255, 0) 100%
+  );
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(77, 138, 255, 0.4);
+  z-index: 0;
+}
+
+.dual-row {
+  display: flex;
+  width: 50%;
+  box-sizing: border-box;
+  margin-bottom: 60px; 
+  position: relative;
+}
+
+/* 奇数番目（左側） */
+.dual-row:nth-child(odd) {
+  margin-right: auto;
+  justify-content: flex-end;
+  padding-right: 60px;
+  text-align: left;
+}
+
+/* 左側のボックスでは、中身を右寄せにして中央線に沿わせる */
+.dual-row:nth-child(odd) .box-content {
+  align-items: flex-end;
+  text-align: left;
+}
+
+/* 偶数番目（右側） */
+.dual-row:nth-child(even) {
+  margin-left: auto;
+  justify-content: flex-start;
+  padding-left: 60px;
+  text-align: left;
+}
+
+/* 線の上の光るドット */
+.dual-row::after {
+  content: "";
+  position: absolute;
+  top: 25px; 
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4D8AFF;
+  box-shadow:
+    0 0 0 6px rgba(77, 138, 255, 0.15),
+    0 0 20px rgba(77, 138, 255, 0.6),
+    0 0 60px rgba(77, 138, 255, 0.3),
+    0 0 100px rgba(77, 138, 255, 0.2);
+  z-index: 5;
+}
+
+/* 奇数番目（左側）のドット位置 */
+.dual-row:nth-child(odd)::after {
+  right: -6px; 
+}
+
+/* 偶数番目（右側）のドット位置 */
+.dual-row:nth-child(even)::after {
+  left: -6px;
+}
+
+/* 各イベントのボックス */
+.event-box {
+  width: 100%;
+  max-width: 500px;
+  background-color: rgba(11, 15, 25, 0.85);
+  border: 1px solid rgba(77, 138, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+}
+
+/* ボックス内のパーツ */
+.box-icon-area {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background-color: rgba(77, 138, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4D8AFF;
+}
+
+/* 箱の中の時間 */
+.event-time {
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #4D8AFF;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.timetable-card {
+  width: 90%;
+  max-width: 450px;
+  margin: 60px auto 0;
+  background-color: rgba(255, 255, 255, 0.03); 
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  border-radius: 12px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  color: #8892b0;
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.ticket-label {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  padding: 12px 0;
+  margin: 0 auto 80px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  position: relative;
+  z-index: 2;
+  background-color: rgba(30, 0, 40, 0.6);
+  border: 1px solid #c084fc;
+  color: #c084fc;
+  box-shadow: 0 0 20px rgba(192, 132, 252, 0.2);
+}
+
+/* Ticketセクション */
+.section-ticket {
+  background-color: var(--color-bg-primary);
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.ticket-category-title {
+  color: #d8b4fe;
+  font-family: "Shippori Mincho", serif;
+  font-size: clamp(28px, 5vw, 36px);
+  margin: 80px 0 40px;
+  letter-spacing: 0.15em;
+  position: relative;
+}
+
+/* タイトルの下に短い線 */
+.ticket-category-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #c084fc;
+  margin: 15px auto 0;
+  opacity: 0.6;
+}
+
+.ticket-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.ticket-card {
+  flex: 1;
+  min-width: 320px;
+  background: linear-gradient(145deg, rgba(30, 10, 50, 0.4), rgba(15, 5, 25, 0.7));
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: left;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+}
+
+.ticket-name {
+  color: #d8b4fe;
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.ticket-price {
+  color: #d8b4fe;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 30px;
+}
+
+.ticket-btn {
+  display: block;
+  width: 100%;
+  background-color: #7e22ce;
+  color: #f3e8ff;
+  text-decoration: none;
+  padding: 15px 0;
+  border-radius: 50px;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.icon-arrow {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+/* Accessセクション */
+.section-access {
+  background-color: var(--color-bg-primary);
+  padding: 100px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+/* ACCESSラベルのデザイン */
+.access-label {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  padding: 12px 0;
+  margin: 0 auto 60px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 2;
+  background-color: rgba(40, 40, 40, 0.6);
+  border: 1px solid #fff;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15); /* new: 他のラベルと同様に微かな光（影）を追加し、統一感を持たせる */
+}
+
+/* 東京ドームの文字デザイン */
+.venue-name {
+  font-family: "Shippori Mincho", serif;
+  font-size: 48px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.map-container {
+  margin-top: 50px;
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.section-attention {
+  background-color: var(--color-bg-primary);
+  padding: 100px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.attention-label {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  padding: 12px 0;
+  margin: 0 auto 60px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 2;
+  background-color: rgba(40, 40, 40, 0.6);
+  border: 1px solid #FBBF24;
+  color: #FBBF24;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+}
+
+/* 外枠（箱）のデザイン */
+.dark-accordion {
+  background-color: #161b2e;
+  color: #ffffff;
+  border: 1px solid #E0E0E0;
+  border-radius: 10px;
+  max-width: 1000px;
+  font-family: "Shippori Mincho", serif;
+  margin: 0 auto 20px auto;
+  text-align: left;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-accordion summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+  outline: none;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+
+
+.dark-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 「＋/－」アイコン */
+.dark-accordion summary::after {
+  content: "＋";
+  font-size: 24px;
+  font-weight: lighter;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.dark-accordion[open] summary::after {
+  content: "－";
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: 0 20px 20px 20px;
+  border-top: 1px solid transparent;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #d0d0d0;
+  animation: fadeInDown 0.4s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.accordion-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.accordion-content li {
+  margin-bottom: 10px;
+}
+
+/* フッター */
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 40px;
+  color: #888;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* スマホ用レスポンシブデザイン (Media Queries) */
+@media (max-width: 767px) {
+  
+  .header {
+    padding: 0 20px;
+    height: 80px;
+  }
+
+  .hero-title {
+    top: 42%;
+    font-size: clamp(40px, 10vw, 70px);
+    transform: translateY(-20px);
+  }
+
+  .hero-subtitle {
+    top: 65%; 
+    font-size: clamp(20px, 4vw, 36px);
+    
+  }
+
+  .info-cards {
+    bottom: 5%;
+    flex-direction: column;
+    width: 95%;
+    gap: 15px;
+  }
+
+  .info-card {
+    padding: 10px 15px;
+    flex: 1 1 calc(50% - 15px);
+    min-width: 130px; 
+  }
+  
+  .info-card_icon { font-size: 28px; }
+  .info-card_value { font-size: 16px; }
+
+  .artists-title {
+    font-size: 40px;
+  }
+
+  .artist-name {
+    font-size: 30px;
+  }
+
+  .timetable-list::before {
+    left: 20px;
+    transform: none;
+  }
+
+  .dual-row,
+  .dual-row:nth-child(odd),
+  .dual-row:nth-child(even) {
+    width: 100%;
+    justify-content: flex-start;
+    margin: 0 0 30px 0;
+    padding-left: 50px;
+    padding-right: 0;
+    text-align: left;
+  }
+
+  .dual-row:nth-child(odd) .box-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* 光るドットの位置調整 */
+  .dual-row::after,
+  .dual-row:nth-child(odd)::after,
+  .dual-row:nth-child(even)::after {
+    left: 1px; 
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .event-box {
+    width: 100%;
+    padding: 20px 15px;
+  }
+
+  .event-subtitle {
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+  }
+
+  .timetable-card {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    width: 95%;
+  }
+  
+  /* Ticketセクション */
+  .ticket-category-title {
+    font-size: clamp(28px, 6vw, 34px);
+    margin: 40px 0 20px;
+  }
+
+  .ticket-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ticket-card {
+    width: 100%;
+    min-width: auto;
+    padding: 30px 20px;
+  }
+
+  .ticket-name {
+    font-size: 22px;
+  }
+
+  .ticket-price {
+    font-size: 32px;
+  }
+
+  .venue-name {
+    font-size: 32px;
+  }
+
+  .dark-accordion summary {
+    font-size: 18px;
+    padding: 20px 15px;
+  }
+
+  .accordion-content {
+    font-size: 15px;
+    padding: 0 15px 20px 15px;
+  }
+
+}

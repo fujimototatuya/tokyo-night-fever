@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>TOKYO NIGHT FEVER</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="live.css"> 
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-logo">TOKYO NIGHT FEVER</div>
+
+<!--メニューボタン-->
+    <button class="hamburger-overlay" aria-label="メニュー" aria-controls="overlay-menu" aria-expanded="false">
+      <span class="hamburger-overlay_line"></span>
+      <span class="hamburger-overlay_line"></span>
+      <span class="hamburger-overlay_line"></span>
+    </button>
+
+    <nav id="overlay-menu" class="nav-overlay" aria-hidden="true">
+      <div class="nav-overlay_content">
+        <ul class="nav-overlay_list">
+         <li class="nav-overlay_item"><a href="#top" class="nav-overlay_link">Top</a></li>
+         <li class="nav-overlay_item"><a href="#artists" class="nav-overlay_link">Artists</a></li>
+         <li class="nav-overlay_item"><a href="#timetable" class="nav-overlay_link">Timetable</a></li>
+         <li class="nav-overlay_item"><a href="#ticket" class="nav-overlay_link">Ticket</a></li>
+         <li class="nav-overlay_item"><a href="#access" class="nav-overlay_link">Access</a></li>
+         <li class="nav-overlay_item"><a href="#attention" class="nav-overlay_link">Attention</a></li>
+       </ul>
+     </div>
+   </nav>
+</header>
+
+<main>
+
+<!--タイトル-->    
+    <section id="top" class="hero-area">                         <!--loadingはページ読み込みと同時に即座に取得・表示する-->
+      <img src="images/Top.png" alt="TOKYO NIGHT FEVER メインビジュアル" loading="eager">
+      <div class="image-overlay"></div>
+      
+    <div class="hero-content">
+      <h1 class="hero-title">TOKYO<br><span class="gradient-text">NIGHT FEVER</span></h1>
+      <p class="hero-subtitle">最高の音楽体験をあなたに</p>
+    </div>
+   
+<!--日付-->      
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-card-date_icon">
+          <i class="fa-regular fa-calendar-days"></i>
+        </div>
+        <div class="info-card_content">
+          <span class="info-card_label">DATE</span>
+          <time datetime="2025-12-15" class="info-card_value">2025.12.15 Mon</time></div>
+      </div>
+
+<!--場所-->
+        <div class="info-card">
+            <div class="info-card-venue_icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="info-card_content">
+            <span class="info-card_label">VENUE</span>
+            <span class="info-card_value">東京ドーム</span>
+          </div>
+        </div>
+      </div> 
+    </section>
+
+<!--出演アーティスト-->
+    <section id="artists" class="section-artists">
+      <h2 class="artists-label">Artists</h2>
+      <div class="artists-container">
+
+        <article class="artist-card"> <div class="artist-card_image">
+            <img src="images/artist1.png" alt="THE NIGHT RIDERS" loading="lazy">
+          </div>
+          <div class="artist-card_content">
+            <h3 class="artist-name">THE NIGHT RIDERS</h3>
+            <p class="artist-role">ヘッドライナー</p>
+            <p class="artist-desc">日本を代表するロックバンド。圧倒的なパフォーマンスと心に響く歌詞で多くのファンを魅了し続けている。</p>
+          </div>
+        </article>
+
+    <article class="artist-card">
+      <div class="artist-card_image">
+        <img src="images/artist2.png" alt="THE NIGHT STARLIGHT" loading="lazy">
+      </div>
+      <div class="artist-card_content">
+        <h3 class="artist-name">THE NIGHT STARLIGHT</h3>
+        <p class="artist-role">スペシャルゲスト</p>
+        <p class="artist-desc">新時代の歌姫が登場。透き通るような歌声と幻想的なステージングで、観客を異世界へと誘う。</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!--タイムスケジュール-->
+<section id="timetable" class="section-timetable">
+      <div class="timetable-container">
+        <h2 class="section-label timetable-label">Timetable</h2>
+        
+        <div class="timetable-list">
+          <div class="dual-row">
+            <div class="event-box">
+              <div class="box-icon-area"><i class="fa-regular fa-clock" aria-hidden="true"></i>
+              </div>
+              <div class="box-content">
+                <time class="event-time">17:00</time>
+                <h3 class="event-title">開場</h3>
+                <p class="event-subtitle">入場開始</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dual-row">
+            <div class="event-box">
+              <div class="box-icon-area">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              </div>
+              <div class="box-content">
+                <time class="event-time">17:30</time>
+                <h3 class="event-title">オープニング</h3>
+                <p class="event-subtitle">特別ゲストによるオープニングパフォーマンス</p>
+              </div>
+            </div>
+          </div> 
+
+          <div class="dual-row">
+            <div class="event-box">
+              <div class="box-icon-area">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              </div>
+              <div class="box-content">
+                <time class="event-time">18:00</time>
+                <h3 class="event-title">STARLIGHT</h3> <p class="event-subtitle">約60分のステージ</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dual-row">
+            <div class="event-box">
+              <div class="box-icon-area">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              </div>
+              <div class="box-content">
+                <time class="event-time">19:00</time>
+                <h3 class="event-title">休憩</h3>
+                <p class="event-subtitle">20分間</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dual-row">
+            <div class="event-box">
+              <div class="box-icon-area">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              </div>
+              <div class="box-content">
+                <time class="event-time">19:20</time>
+                <h3 class="event-title">THE NIGHT RIDERS</h3>
+                <p class="event-subtitle">約100分のステージ</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dual-row">
+            <div class="event-box">
+              <div class="box-icon-area">
+                <i class="fa-regular fa-clock" aria-hidden="true"></i>
+              </div>
+              <div class="box-content">
+                <time class="event-time">21:00</time>
+                <h3 class="event-title">終演予定</h3>
+                <p class="event-subtitle">アンコール含む</p>
+              </div>
+            </div>
+          </div>
+
+        </div> </div> <p class="timetable-card">※タイムテーブルは変更される場合がございます</p>
+    </section>
+
+<!--チケット-->
+<section id="ticket" class="section-ticket">
+  <h2 class="ticket-label">Ticket</h2>
+
+  <div class="ticket-group">
+    <h3 class="ticket-category-title">オフラインチケット</h3>
+    <div class="ticket-container">
+      <div class="ticket-card">
+        <h4 class="ticket-name">一般</h4> <div class="ticket-price">¥8,000</div><!--new↓-->
+        <a href="#" class="ticket-btn">購入サイトへ <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
+      <div class="ticket-card">
+        <h4 class="ticket-name">VIP席</h4>
+        <div class="ticket-price">¥12,000</div>
+        <a href="#" class="ticket-btn">購入サイトへ <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticket-group">
+    <h3 class="ticket-category-title">オンラインチケット</h3>
+    <div class="ticket-container">
+      <div class="ticket-card">
+        <h4 class="ticket-name">ネット動画配信チケット</h4>
+        <div class="ticket-price">¥6,000</div>
+        <a href="#" class="ticket-btn">購入サイトへ <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
+      <div class="ticket-card">
+        <h4 class="ticket-name">定点カメラ視聴チケット</h4>
+        <div class="ticket-price">¥2,000</div>
+        <a href="#" class="ticket-btn">購入サイトへ <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--マップ-->
+<section id="access" class="section-access">
+  <h2 class="section-label access-label">Access</h2>
+  <div class="access-info">
+    <p class="venue-name">東京ドーム</p>
+    <address class="venue-address">〒112-0004 東京都文京区後楽1-3-61</address>
+  </div>
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.836552588336!2d139.7493163757888!3d35.705639572579315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c4782eed4f3%3A0x5058b288249e640e!2z5p2x5Lqs44OJ44O844Og!5e0!3m2!1sja!2sjp!4v1769517165965!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!--注意事項-->
+<section id="attention" class="section-attention">
+  <h2 class="attention-label">Attention</h2>
+  <div class="attention-content-wrapper">
+    <details class="dark-accordion">
+      <summary>注意事項・ご案内</summary>
+      <div class="accordion-content">
+        <ul>
+          <li>開場時間前のご来場・開演時間後の入場はお控えください</li>
+          <li>公演中の入退場は制限される場合がございます</li>
+          <li>天候・交通機関の事情等により、イベントが中止または延期となる場合がございます</li>
+          <li>他のお客様のご迷惑となる行為はお控えください</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="dark-accordion">
+      <summary>お持ち込み禁止物</summary>
+      <div class="accordion-content">
+        <ul>
+          <li>危険物（刃物類、爆発物など）</li>
+          <li>大きな荷物やキャリーケース</li>
+          <li>ペットボトルを含む飲食物（会場内でお買い求めください）</li>
+          <li>カメラ・ビデオカメラ・録音機器</li>
+        </ul>
+     </div>
+    </details>
+
+    <details class="dark-accordion">
+      <summary>その他禁止行為</summary>
+      <div class="accordion-content">
+        <ul>
+          <li>会場内での録音・録画は禁止されています</li>
+          <li>転売目的でのご購入は固くお断りいたします</li>
+          <li>スタンディング席での過度な押し合いや危険行為</li>
+          <li>公演の進行を妨げる行為</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="dark-accordion">
+      <summary>チケットに関する注意事項</summary>
+      <div class="accordion-content">
+        <ul>
+          <li>オンラインチケットは先着順での販売となります</li>
+          <li>購入後のキャンセル・変更はできません</li>
+          <li>入場時には購入時の本人確認書類が必要です</li>
+          <li>未就学児の入場はご遠慮ください</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="dark-accordion">
+      <summary>よくある質問</summary>
+      <div class="accordion-content faq-list">
+        <div class="faq-item">
+          <p class="faq-q">Q. 再入場はできますか？</p>
+          <p class="faq-a">A. 原則として再入場は固くお断りしております。</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Q. クロークはありますか？</p>
+          <p class="faq-a">A. 会場内にクロークはございません。駅等のロッカーをご利用ください。</p>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+</main>
+  
+<footer class="footer">
+  <p>&copy; portfolio</p>
+</footer>
+  
+  <script src="live.js"></script> 
+</body>
+</html>
